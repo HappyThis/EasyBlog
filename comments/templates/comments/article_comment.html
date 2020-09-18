@@ -1,0 +1,16 @@
+{% if comment_list %}
+    <ul>
+        {% for comment in comment_list %}
+            <li>
+                {% if comment.replyer %}
+                    {{ comment.comment_id }} 回复 {{ comment.replyer.comment_id }} 说:
+                {% endif %}
+                {{ comment.comment_text }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+<p> <a href={% url 'blog:index' %}>返回文章列表</a> </p>

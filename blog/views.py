@@ -18,6 +18,11 @@ class ArticleDetail(generic.DeleteView):
 
     def get_object(self, queryset=None):
         # 从request中获取字段
-        pk = self.kwargs['pk']
+        pk = self.kwargs['article_pk']
+        # 访问数量自增
+        article = Article.objects.get(article_id=pk)
+        article.article_view += 1
         # 查询
-        return Article.objects.get(article_id=pk)
+        return article
+
+# class ArticleComment(generic.ListView):

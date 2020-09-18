@@ -1,5 +1,6 @@
 {% if article %}
-    {{ article.article_text }}
+    <p> {{ article.article_text }}</p>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+<p> <a href={% url 'blog:index' %}>返回文章列表</a> </p>

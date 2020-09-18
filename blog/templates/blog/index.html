@@ -1,7 +1,8 @@
 {% if article_list %}
     <ul>
         {% for article in article_list %}
-            <li><a href={% url 'detail' article.article_id %}>{{ article.article_title }}</a></li>
+            <li><a href={% url 'blog:detail' article.article_id %}>{{ article.article_title }}</a> <a
+                    href={% url 'comments:comment' article.article_id %}>点击评论</a></li>
         {% endfor %}
     </ul>
 {% else %}
