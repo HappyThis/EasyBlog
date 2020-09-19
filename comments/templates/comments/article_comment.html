@@ -3,7 +3,9 @@
         {% for comment in comment_list %}
             <li>
                 {% if comment.replyer %}
-                    {{ comment.comment_id }} 回复 {{ comment.replyer.comment_id }} 说:
+                    {{ comment.user.user_nickname }} 回复 {{ comment.replyer.user.user_nickname }} 说:
+                {% else %}
+                    {{ comment.user.user_nickname }} 说:
                 {% endif %}
                 {{ comment.comment_text }}
             </li>
@@ -13,4 +15,4 @@
     <p>No polls are available.</p>
 {% endif %}
 
-<p> <a href={% url 'blog:index' %}>返回文章列表</a> </p>
+<p><a href={% url 'blog:index' %}>返回文章列表</a></p>
