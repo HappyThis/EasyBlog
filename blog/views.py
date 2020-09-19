@@ -1,3 +1,5 @@
+import modes as modes
+from django.forms import models
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import generic
@@ -25,4 +27,4 @@ class ArticleDetail(generic.DeleteView):
         # 查询
         return article
 
-# class ArticleComment(generic.ListView):
+
