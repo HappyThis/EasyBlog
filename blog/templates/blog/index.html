@@ -1,3 +1,8 @@
+{% if request.user.is_authenticated %}
+    登录中
+{% else %}
+    未登录
+{% endif %}
 {% if article_list %}
     <ul>
         {% for article in article_list %}

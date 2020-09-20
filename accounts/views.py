@@ -1,4 +1,5 @@
 # Create your views here.
+from django.contrib import auth
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
@@ -12,5 +13,14 @@ class Login(FormView):
     form_class = LoginForm
     success_url = reverse_lazy('blog:index')
 
-    def get(self, request, *args, **kwargs):
-        return render(self.request, template_name=self.template_name)
+    def form_valid(self, form):
+        print("matched")
+        auth.login(self.request, form.get_user())
+        #        auth.logout(self.request)
+        return super(Login, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print("not matched")
+        return self.render_to_response({
+            'form': form
+        })
