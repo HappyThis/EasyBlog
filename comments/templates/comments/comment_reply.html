@@ -1,0 +1,11 @@
+{% if request.user.is_authenticated %}
+
+    <form action="{% url 'comments:reply' article_id comment_id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">发表</button>
+    </form>
+
+{% else %}
+    若要评论请先登录
+{% endif %}

@@ -21,6 +21,8 @@ class RegisterForm(UserCreationForm):
             attrs={'placeholder': "username", "class": "form-control"})
         self.fields['email'].widget = widgets.EmailInput(
             attrs={'placeholder': "email", "class": "form-control"})
+        self.fields['nickname'].widget = widgets.TextInput(
+            attrs={'placeholder': "nickname", "class": "form-control"})
         self.fields['password1'].widget = widgets.PasswordInput(
             attrs={'placeholder': "password", "class": "form-control"})
         self.fields['password2'].widget = widgets.PasswordInput(
@@ -34,4 +36,4 @@ class RegisterForm(UserCreationForm):
 
     class Meta:
         model = get_user_model()
-        fields = ("username", "email")
+        fields = ("username", "email", "nickname")

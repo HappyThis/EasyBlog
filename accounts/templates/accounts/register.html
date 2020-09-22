@@ -2,11 +2,10 @@
     {% csrf_token %}
     {{ form.non_field_errors }}
     {% for field in form %}
-        {{ field }}
-        {{ field.errors }}
+        {{ field }} {{ field.errors }} <br>
     {% endfor %}
 
 
-    <button type="submit">Create Your Account</button>
+    <button type="submit">注册用户</button>
 
 </form>

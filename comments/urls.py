@@ -8,4 +8,8 @@ urlpatterns = [
         'content/<int:article_pk>/',
         views.CommentView.as_view(),
         name='comment'),
+    path(
+        'content/<int:article_pk>/<int:comment_id>',
+        views.ReplyComment.as_view(),
+        name='reply'),
 ]

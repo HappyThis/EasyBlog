@@ -2,17 +2,30 @@
     <ul>
         {% for comment in comment_list %}
             <li>
-                {% if comment.replyer %}
-                    {{ comment.user.user_nickname }} 回复 {{ comment.replyer.user.user_nickname }} 说:
-                {% else %}
-                    {{ comment.user.user_nickname }} 说:
-                {% endif %}
-                {{ comment.comment_text }}
+                <a href={% url 'comments:reply' article_id comment.comment_id %}>
+                    {% if comment.replyer %}
+                        {{ comment.user.nickname }} 回复 {{ comment.replyer.user.nickname }} 说:
+                    {% else %}
+                        {{ comment.user.nickname }} 说:
+                    {% endif %}
+                    {{ comment.comment_text }}
+                </a>
             </li>
         {% endfor %}
     </ul>
 {% else %}
-    <p>No polls are available.</p>
+    <p>当前还没人发表评论</p>
+{% endif %}
+{% if request.user.is_authenticated %}
+
+    <form action="{% url 'comments:comment' article_id %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">发表</button>
+    </form>
+
+{% else %}
+    若要评论请先登录
 {% endif %}
 
 <p><a href={% url 'blog:index' %}>返回文章列表</a></p>
